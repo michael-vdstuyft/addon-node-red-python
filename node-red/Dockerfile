@@ -36,7 +36,7 @@ RUN \
         --omit=dev \
         --unsafe-perm \
     && npm rebuild --build-from-source @serialport/bindings-cpp \
-    && pip3 install numpy scikit-learn \
+    && python -m pip install numpy scikit-learn \
     && npm cache clear --force \
     \
     && echo -e "StrictHostKeyChecking no" >> /etc/ssh/ssh_config \
