@@ -49,6 +49,8 @@ RUN \
         /root/.npm \
         /root/.nrpmrc \
         /tmp/*
+RUN apk add --no-cache python3 py3-pip
+RUN pip3 install numpy scikit-learn
 
 # Copy root filesystem
 COPY rootfs /
