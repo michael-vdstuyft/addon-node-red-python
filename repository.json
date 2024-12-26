@@ -1,0 +1,8 @@
+{
+  "name": "Node-RED with Python Add-on",
+  "description": "Custom Node-RED add-on with Python support.",
+  "url": "https://github.com/michael-vdstuyft/addon-node-red-python",
+  "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
+  "type": "addon",
+  "version": "1.0.0"
+}
