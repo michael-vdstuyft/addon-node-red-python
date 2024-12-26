@@ -14,18 +14,20 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Setup base
 RUN \
-    apk add --no-cache --virtual .build-dependencies \
+    apk add --no-cache \
         build-base=0.5-r3 \
         linux-headers=6.5-r0 \
         py3-pip=23.3.1-r0 \
         python3-dev=3.11.11-r0 \
-    \
-    && apk add --no-cache \
         git=2.43.5-r0 \
         icu-data-full=74.1-r0 \
         nginx=1.24.0-r16 \
         openssh-client=9.6_p1-r1 \
         patch=2.7.6-r10 \
+        gfortran \
+        libatlas3-compat \
+        musl-dev \
+        openblas-dev \
     \
     && npm install \
         --no-audit \
@@ -34,7 +36,7 @@ RUN \
         --omit=dev \
         --unsafe-perm \
     && npm rebuild --build-from-source @serialport/bindings-cpp \
-    \
+    && pip3 install numpy scikit-learn \
     && npm cache clear --force \
     \
     && echo -e "StrictHostKeyChecking no" >> /etc/ssh/ssh_config \
@@ -49,8 +51,6 @@ RUN \
         /root/.npm \
         /root/.nrpmrc \
         /tmp/*
-RUN apk add --no-cache python3 py3-pip
-RUN pip3 install numpy scikit-learn
 
 # Copy root filesystem
 COPY rootfs /
